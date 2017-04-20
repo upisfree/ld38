@@ -1,0 +1,24 @@
+{
+  "name": "ld38",
+  "version": "1.0.0",
+  "devDependencies": {
+    "coffeeify": "*",
+    "gulp": "*",
+    "gulp-browserify": "*",
+    "gulp-coffee": "*",
+    "gulp-concat": "*",
+    "gulp-livereload": "^3.8.0",
+    "gulp-uglify": "*",
+    "gulp-util": "*"
+  },
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/upisfree/ld38.git"
+  },
+  "author": "upisfree",
+  "bugs": {
+    "url": "https://github.com/upisfree/ld38/issues"
+  },
+  "homepage": "https://github.com/upisfree/ld38"
+}
