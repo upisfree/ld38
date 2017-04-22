@@ -18,12 +18,13 @@ body
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: #000;
+  /*background: #000;*/
 }
 
 canvas
 {
-  /*z-index: 10;*/
+  transform: translate(50%, 50%);
+  z-index: 10;
 }
 
 /*.instruction
@@ -44,8 +45,8 @@ canvas
   <body>
     <!-- <div class="instruction"></div> -->
 
-    <script src="./lib/pixi.min.js"></script>
+    <canvas></canvas>
     
-    <script src="./bin/ld38.js"></script>
+    <script src="./bin/client.js"></script>
   </body>
 </html>
