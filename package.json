@@ -1,6 +1,10 @@
 {
   "name": "ld38",
   "version": "1.0.0",
+  "scripts": {
+    "install": "npm i forever -g",
+    "start": "forever bin/server/index.js"
+  },
   "devDependencies": {
     "coffeeify": "*",
     "gulp": "*",
