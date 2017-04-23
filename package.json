@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/upisfree/ld38",
   "dependencies": {
+    "forever": "^0.15.3",
     "ws": "^2.3.1"
   },
   "optionalDependencies": {

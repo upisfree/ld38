@@ -1,2 +1,11 @@
 # ld38
-fictional-goggles
+### build
+```bash
+gulp
+```
+
+### start
+```bash
+npm i
+forever bin/server/index.js
+```
