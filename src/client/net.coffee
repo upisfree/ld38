@@ -4,14 +4,22 @@ Player = require '../player'
 net =
   socket: new WebSocket "ws://#{config.host}:#{config.port}"
 
+
+# todo: пожирание кругов,
+#       умирание кругов о границы,
+#       нормальные цвета,
+#       заставка + инструкция,
+#       динамичность / скорость (!)
+
+
 net.socket.onmessage = (e) ->
   if e.data[0] is '+' # new player
     data = e.data.substring(1).split ','
 
-    window.players.push new Player data[0], null, data[1], data[2], config.startRadius, data[3], data[4]
-  else if e.data[0] is '-' # remove player from array
     console.log e.data
 
+    window.players.push new Player data[0], null, data[1], data[2], data[3], data[4], data[5]
+  else if e.data[0] is '-' # remove player from array
     for p in window.players
       if p isnt undefined
         if p.id is e.data.substring(1)
@@ -21,7 +29,9 @@ net.socket.onmessage = (e) ->
   else if e.data[0] is '~'
     window.myId = e.data.substring(1)
   else if e.data[0] is '#'
-    console.log 'Ты проиграл! Лох!'
+    alert 'Ты проиграл! Лох!'
+  else if e.data[0] is '!'
+    alert 'Ты победил! Красава!'
   else # onkeyup
     for p in window.players
       if p isnt undefined
@@ -29,9 +39,9 @@ net.socket.onmessage = (e) ->
           p.r += config.progress
 
 net.socket.onclose = (e) ->
-  alert 'Что-то случилось с сервером...'
-
-  console.log e
+  if not e.wasClean
+    # alert 'Что-то случилось с сервером...'
+    console.log e
 
 net.socket.onerror = (e) ->
   alert 'Ошибка! Перезагрузи страницу (Ctrl+R)!'

@@ -10,15 +10,19 @@ render = ->
   
   time++
 
-  # window.playerRadius -= config.regress
-
   for p in window.players
-    p.r -= config.regress + Math.cos(time)
+    if p isnt undefined
+      if isNaN p.r
+        p.r = config.startRadius
 
-    if p.r <= 0
-      p.r = 1
+      p.r -= ~~(config.regress + Math.cos(time))
 
-    circle p.x, p.y, p.r, p.fill, p.stroke
+      if p.r <= 0
+        p.r = 1
+      else if p.r >= 1000 # !!!!!!!!!!!
+        p.r = config.startRadius
+
+      circle p.x, p.y, p.r, p.fill, p.stroke
 
   # requestAnimationFrame render
 

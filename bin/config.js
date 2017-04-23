@@ -1,13 +1,13 @@
 var config;
 
 config = {
-  width: 640,
-  height: 480,
+  width: 1024,
+  height: 768,
   startRadius: 100,
-  host: 'localhost',
+  host: '192.168.100.55',
   port: 1111,
-  progress: 1,
-  regress: 0.4
+  progress: 1.5,
+  regress: 1
 };
 
 module.exports = config;

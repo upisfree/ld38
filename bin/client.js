@@ -24,7 +24,7 @@ circle = function(x, y, r, f, s) {
   canvas.arc(x, y, r, 0, 2 * Math.PI, false);
   canvas.fillStyle = f;
   canvas.fill();
-  canvas.lineWidth = 1;
+  canvas.lineWidth = 2;
   canvas.strokeStyle = s;
   return canvas.stroke();
 };
@@ -68,9 +68,9 @@ net.socket.onmessage = function(e) {
   var data, i, j, k, len, len1, p, ref, ref1, results, results1;
   if (e.data[0] === '+') {
     data = e.data.substring(1).split(',');
-    return window.players.push(new Player(data[0], null, data[1], data[2], config.startRadius, data[3], data[4]));
-  } else if (e.data[0] === '-') {
     console.log(e.data);
+    return window.players.push(new Player(data[0], null, data[1], data[2], data[3], data[4], data[5]));
+  } else if (e.data[0] === '-') {
     ref = window.players;
     results = [];
     for (j = 0, len = ref.length; j < len; j++) {
@@ -90,7 +90,9 @@ net.socket.onmessage = function(e) {
   } else if (e.data[0] === '~') {
     return window.myId = e.data.substring(1);
   } else if (e.data[0] === '#') {
-    return console.log('Ты проиграл! Лох!');
+    return alert('Ты проиграл! Лох!');
+  } else if (e.data[0] === '!') {
+    return alert('Ты победил! Красава!');
   } else {
     ref1 = window.players;
     results1 = [];
@@ -111,8 +113,9 @@ net.socket.onmessage = function(e) {
 };
 
 net.socket.onclose = function(e) {
-  alert('Что-то случилось с сервером...');
-  return console.log(e);
+  if (!e.wasClean) {
+    return console.log(e);
+  }
 };
 
 net.socket.onerror = function(e) {
@@ -155,11 +158,20 @@ render = function() {
   results = [];
   for (i = 0, len = ref.length; i < len; i++) {
     p = ref[i];
-    p.r -= config.regress + Math.cos(time);
-    if (p.r <= 0) {
-      p.r = 1;
+    if (p !== void 0) {
+      if (isNaN(p.r)) {
+        p.r = config.startRadius;
+      }
+      p.r -= ~~(config.regress + Math.cos(time));
+      if (p.r <= 0) {
+        p.r = 1;
+      } else if (p.r >= 1000) {
+        p.r = config.startRadius;
+      }
+      results.push(circle(p.x, p.y, p.r, p.fill, p.stroke));
+    } else {
+      results.push(void 0);
     }
-    results.push(circle(p.x, p.y, p.r, p.fill, p.stroke));
   }
   return results;
 };
@@ -171,13 +183,13 @@ module.exports = render;
 var config;
 
 config = {
-  width: 640,
-  height: 480,
+  width: 1024,
+  height: 768,
   startRadius: 100,
-  host: 'localhost',
+  host: '192.168.100.55',
   port: 1111,
-  progress: 1,
-  regress: 0.4
+  progress: 1.5,
+  regress: 1
 };
 
 module.exports = config;
