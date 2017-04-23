@@ -25,13 +25,18 @@ body
   justify-content: center;
   align-items: center;
 
-   background: #F7F7F6; 
+  background: #F7F7F6; 
 }
 
 canvas
 {
   border: 2px solid #09060C;
-  z-index: 10;
+  /*z-index: 10;*/
+}
+
+img
+{
+  position: absolute;
 }
 
 /*.instruction
@@ -51,6 +56,10 @@ canvas
   </head>
   <body>
     <!-- <div class="instruction"></div> -->
+
+    <img id="start" src="./assets/start.png">
+    <img id="win" src="./assets/win.png" style="display: none;">
+    <img id="fail" src="./assets/fail.png" style="display: none;">
 
     <canvas></canvas>
     

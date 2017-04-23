@@ -4,10 +4,6 @@ Player = require '../player'
 net =
   socket: new WebSocket "ws://#{config.host}:#{config.port}"
 
-
-# todo: пожирание кругов,
-#       умирание кругов о границы,
-#       нормальные цвета,
 #       заставка + инструкция,
 #       динамичность / скорость (!)
 
@@ -29,9 +25,17 @@ net.socket.onmessage = (e) ->
   else if e.data[0] is '~'
     window.myId = e.data.substring(1)
   else if e.data[0] is '#'
-    alert 'Ты проиграл! Лох!'
+    setTimeout ->
+      document.getElementById('fail').style.display = 'block'
+    , 1000
+
+    # alert 'Ты проиграл! Лох!'
   else if e.data[0] is '!'
-    alert 'Ты победил! Красава!'
+    setTimeout ->
+      document.getElementById('win').style.display = 'block'
+    , 1000
+
+    # alert 'Ты победил! Красава!'
   else # onkeyup
     for p in window.players
       if p isnt undefined

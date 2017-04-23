@@ -33,7 +33,7 @@ module.exports = circle;
 
 
 },{"../config":6,"./canvas":1}],3:[function(require,module,exports){
-var canvas, circle, config, net, render;
+var canvas, circle, config, render;
 
 config = require('../config');
 
@@ -43,12 +43,16 @@ render = require('./render');
 
 circle = require('./circle');
 
-net = require('./net')(function() {
-  window.onkeyup = function(e) {
-    return net.socket.send(window.myId);
-  };
-  return setInterval(render, 15);
-});
+setTimeout(function() {
+  var net;
+  return net = require('./net')(function() {
+    document.getElementById('start').style.display = 'none';
+    window.onkeyup = function(e) {
+      return net.socket.send(window.myId);
+    };
+    return setInterval(render, 15);
+  });
+}, 4000);
 
 window.players = [];
 
@@ -90,9 +94,13 @@ net.socket.onmessage = function(e) {
   } else if (e.data[0] === '~') {
     return window.myId = e.data.substring(1);
   } else if (e.data[0] === '#') {
-    return alert('Ты проиграл! Лох!');
+    return setTimeout(function() {
+      return document.getElementById('fail').style.display = 'block';
+    }, 1000);
   } else if (e.data[0] === '!') {
-    return alert('Ты победил! Красава!');
+    return setTimeout(function() {
+      return document.getElementById('win').style.display = 'block';
+    }, 1000);
   } else {
     ref1 = window.players;
     results1 = [];
