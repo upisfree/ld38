@@ -5,7 +5,7 @@ config = {
   height: 768,
   startRadius: 100,
   host: 'weakness-upisfree.rhcloud.com',
-  port: 8080,
+  port: 3000,
   progress: 1.5,
   regress: 1
 };

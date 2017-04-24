@@ -3,7 +3,7 @@ config =
   height: 768
   startRadius: 100
   host: 'weakness-upisfree.rhcloud.com'
-  port: 8080 # https://developers.openshift.com/managing-your-applications/port-binding-routing.html
+  port: 3000 # from node.js comminuty cartridge 
   progress: 1.5 # circle progress per frame
   regress: 1 # circle regress per frame
 
