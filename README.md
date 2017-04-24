@@ -8,6 +8,6 @@
 
 ### Если ты такой любопытный
 1) `sudo npm i`
-2) посмотри свой локальный IP-адрес (192.168.*.*) и вставь его в `src/config.coffee`
+2) посмотри свой локальный IP-адрес (192.168.\*.\*) и вставь его в `src/config.coffee`
 3) `gulp build`
 4) `forever bin/server/index.js`
