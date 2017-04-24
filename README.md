@@ -1,11 +1,13 @@
 # ld38
-### build
-```bash
-gulp
-```
+Игра на Ludum Dare №38.
 
-### start
-```bash
-npm i
-forever bin/server/index.js
-```
+Нужно съесть друга.
+Для этого надо очень-очень быстро тыкать по любым клавишам, от этого круг становится больше.
+
+![](assets/start.png)
+
+### Если ты такой любопытный
+1) `sudo npm i`
+2) посмотри свой локальный IP-адрес (192.168.*.*) и вставь его в `src/config.coffee`
+3) `gulp build`
+4) `forever bin/server/index.js`

@@ -29,6 +29,13 @@ gulp.task('shared', function ()
              .pipe(gulp.dest('./bin'));
 });
 
+gulp.task('build', function()
+{
+  gulp.run('client');
+  gulp.run('server');
+  gulp.run('shared');
+});
+
 gulp.task('default', function()
 {
   gulp.watch('./src/**/*.coffee', function()
